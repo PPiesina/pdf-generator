@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { html_to_pdf } = require(".");
+const { html_to_pdf } = require("./");
 
 try {
    (async () => {
