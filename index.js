@@ -14,7 +14,7 @@ module.exports.html_to_pdf = async ({ templateHtml, dataBinding, options }) => {
    await page.goto(`data:text/html;charset=UTF-8,${finalHtml}`, {
       waitUntil: "networkidle0",
    });
- 
+
    await page.addStyleTag({
       content:
          `
@@ -30,7 +30,7 @@ module.exports.html_to_pdf = async ({ templateHtml, dataBinding, options }) => {
    });
 
    // await page.evaluateHandle('document.fonts.ready');
-  const pdf =  await page.pdf(options);
-  await browser.close();
-  return pdf
+   const pdf = await page.pdf(options);
+   await browser.close();
+   return pdf
 };
