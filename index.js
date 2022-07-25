@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 // const http = require('http');
 const puppeteer = require("puppeteer");
-const handlebars = require("handlebars");
+// const handlebars = require("handlebars");
 const fs = require("fs");
 
 
@@ -41,8 +41,8 @@ app.get('/pdf', async (req, res) => {
 
 
 const html_to_pdf = async ({ templateHtml, dataBinding, options }) => {
-  const template = handlebars.compile(templateHtml);
-  const finalHtml = encodeURIComponent(template(dataBinding));
+  // const template = handlebars.compile(templateHtml);
+  const finalHtml = encodeURIComponent(templateHtml);
 
   const browser = await puppeteer.launch({
     args: ["--no-sandbox"],
