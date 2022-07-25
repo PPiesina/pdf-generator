@@ -4,6 +4,7 @@ const express = require('express');
 const puppeteer = require("puppeteer");
 // const handlebars = require("handlebars");
 const fs = require("fs");
+const { Readable } = require('stream');
 
 
 const PORT = process.env.PORT || 5000
@@ -16,26 +17,28 @@ app.listen(PORT, () => {
 
 
 
-app.get('/', function (req, res) {
-  console.log('route')
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello');
-});
+// app.get('/', function (req, res) {
+//   console.log('route')
+//   res.statusCode = 200;
+//   res.setHeader('Content-Type', 'text/plain');
+//   res.end('add /pdf');
+// });
 
 
-app.get('/pdf', async (req, res) => {
+app.get('/', async (req, res) => {
   const pdf = await getPdf();
 
   console.log('route /test');
+  console.log(pdf.length);
   res.statusCode = 200;
 
   res.writeHead(200, {
     "Content-Type": "application/octet-stream",
     "Content-Disposition": "attachment; filename=invoice.pdf"
   });
-  fs.createReadStream('invoice.pdf').pipe(res);
-
+  // fs.createReadStream(pdf).pipe(res);
+  const stream = Readable.from(pdf);
+  stream.pipe(res);
 
 });
 
@@ -63,10 +66,7 @@ const html_to_pdf = async ({ templateHtml, dataBinding, options }) => {
            font-family: myFirstFont;
            src: url("data:font/ttf;base64,${fs.readFileSync('./fonts/EduVICWANTBeginner-VariableFont_wght.ttf').toString('base64')}")
         }
-        div {
-           font-family: myFirstFont;
-           font-size: 22px;
-        }
+
         `
   });
 
@@ -105,15 +105,15 @@ const getPdf = async () => {
 
   const options = {
     format: "A4",
-    headerTemplate: "<p></p>",
-    footerTemplate: "<p></p>",
-    displayHeaderFooter: false,
-    margin: {
-      top: "40px",
-      bottom: "100px",
-    },
+    // headerTemplate: "<p></p>",
+    // footerTemplate: "<p></p>",
+    // displayHeaderFooter: false,
+    // margin: {
+    //   top: "40px",
+    //   bottom: "100px",
+    // },
     printBackground: true,
-    path: "invoice.pdf",
+    // path: "invoice.pdf",
   };
 
   const pdf = await html_to_pdf({ templateHtml, dataBinding, options });
