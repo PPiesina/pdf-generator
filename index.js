@@ -13,7 +13,7 @@ app.listen(PORT, () => {
 });
 
 app.use(require('body-parser').json());
-app.get('/', async (req, res) => {
+app.all('/', async (req, res) => {
   const pdf = await convertToPdf({html: req.body.html});
   res.statusCode = 200;
   res.writeHead(200, {
