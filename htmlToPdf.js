@@ -8,12 +8,13 @@ module.exports.convertToPdf = async ({html}) => {
      printBackground: true
    };
  
-   const pdf = await html_to_pdf({ html, options });
  
-   return pdf;
- };
 
-const html_to_pdf = async ({ html, options }) => {
+//   const templateHtml = fs.readFileSync(
+//     path.join(process.cwd(), "invoice.html"),
+//     "utf8"
+//  );
+//    const finalHtml = encodeURIComponent(templateHtml);
    const finalHtml = encodeURIComponent(html);
  
    const browser = await puppeteer.launch({

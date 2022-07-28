@@ -11,6 +11,9 @@
       height: 100%;
       background: grey;
    }
+   .script-class{
+   background: blue !important;
+   }
   div {
    font-family: myFirstFont;
    font-size: 22px;
@@ -19,3 +22,8 @@
 <body>
    <div class='main'>hello</div>
 </body>
+<script>
+   document.querySelector(".main").classList.add("script-class");
+</script>
+
+
