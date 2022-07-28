@@ -34,7 +34,7 @@ module.exports.convertToPdf = async ({html}) => {
        `
          @font-face {
             font-family: myFirstFont;
-            src: url("data:font/ttf;base64,${fs.readFileSync('./fonts/EduVICWANTBeginner-VariableFont_wght.ttf').toString('base64')}")
+            src: url("data:font/ttf;base64,${fs.readFileSync('./fonts/adventpro-thin.ttf').toString('base64')}")
          }
          `
    });
