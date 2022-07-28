@@ -8,7 +8,6 @@ module.exports.convertToPdf = async ({ html, templateVariables }) => {
     printBackground: true
   };
 
-  console.log(templateVariables);
 
 
 
@@ -37,15 +36,15 @@ module.exports.convertToPdf = async ({ html, templateVariables }) => {
     waitUntil: "networkidle0",
   });
 
-  await page.addStyleTag({
-    content:
-      `
-         @font-face {
-            font-family: myFirstFont;
-            src: url("data:font/ttf;base64,${fs.readFileSync('./fonts/adventpro-thin.ttf').toString('base64')}")
-         }
-         `
-  });
+  // await page.addStyleTag({
+  //   content:
+  //     `
+  //        @font-face {
+  //           font-family: myFirstFont;
+  //           src: url("data:font/ttf;base64,${fs.readFileSync('./fonts/adventpro-thin.ttf').toString('base64')}")
+  //        }
+  //        `
+  // });
   const pdf = await page.pdf(options);
   await browser.close();
   return pdf
