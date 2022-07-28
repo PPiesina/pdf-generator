@@ -8,12 +8,13 @@ module.exports.convertToPdf = async ({html}) => {
      printBackground: true
    };
  
-   const pdf = await html_to_pdf({ html, options });
  
-   return pdf;
- };
 
-const html_to_pdf = async ({ html, options }) => {
+//   const templateHtml = fs.readFileSync(
+//     path.join(process.cwd(), "invoice.html"),
+//     "utf8"
+//  );
+//    const finalHtml = encodeURIComponent(templateHtml);
    const finalHtml = encodeURIComponent(html);
  
    const browser = await puppeteer.launch({
@@ -33,7 +34,7 @@ const html_to_pdf = async ({ html, options }) => {
        `
          @font-face {
             font-family: myFirstFont;
-            src: url("data:font/ttf;base64,${fs.readFileSync('./fonts/EduVICWANTBeginner-VariableFont_wght.ttf').toString('base64')}")
+            src: url("data:font/ttf;base64,${fs.readFileSync('./fonts/adventpro-thin.ttf').toString('base64')}")
          }
          `
    });
