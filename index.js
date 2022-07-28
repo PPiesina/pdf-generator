@@ -14,7 +14,7 @@ app.listen(PORT, () => {
 
 app.use(require('body-parser').json());
 app.all('/', async (req, res) => {
-  const pdf = await convertToPdf({html: req.body.html});
+  const pdf = await convertToPdf(req.body);
   res.statusCode = 200;
   res.writeHead(200, {
     "Content-Type": "application/octet-stream",
